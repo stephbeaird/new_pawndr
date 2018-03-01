@@ -83,5 +83,6 @@ module.exports = {
 				res.json(foundUsers);
 			}
 		});
+		
 	},
 }

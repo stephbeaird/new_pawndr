@@ -12,6 +12,7 @@ import { PetsComponent } from './pets/pets.component';
 import { PetListComponent } from './pets/pet-list/pet-list.component';
 import { UserPetsComponent } from './pets/user-pets/user-pets.component';
 import { LandingComponent } from './landing/landing.component';
+import { StoriesComponent } from './stories/stories.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LandingComponent } from './landing/landing.component';
     PetsComponent,
     PetListComponent,
     UserPetsComponent,
-    LandingComponent
+    LandingComponent,
+    StoriesComponent
   ],
   imports: [
     BrowserModule,
