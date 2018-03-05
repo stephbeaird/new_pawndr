@@ -8,13 +8,10 @@ export class DataService {
 	petsData: BehaviorSubject<object> =  new BehaviorSubject([]);
 	singlePetData: BehaviorSubject<object> =  new BehaviorSubject([]);
 	randomPetData: BehaviorSubject<object> =  new BehaviorSubject([]);
+	allUsersData: BehaviorSubject<object> =  new BehaviorSubject([]);
 
   constructor(private _http: HttpClient) {
     this.getAllPets();
-   }
-
-	getlanding(){
-		this._http.get('/dashboard')
    }
 
    getCurrentUser(){
@@ -29,11 +26,11 @@ export class DataService {
 
 	loginUser(userObj){
 	console.log('loginUser');
-		this._http.post('/data/login', userObj)
-		.subscribe((responseData:any)=>{ 
-			console.log('responseData',responseData);
-			this.userData.next(responseData);
-		})
+	this._http.post('/data/login', userObj)
+	.subscribe((responseData:any)=>{
+		console.log('responseData',responseData);
+		this.userData.next(responseData);
+	})
 	}
 
 	getAllPets(){

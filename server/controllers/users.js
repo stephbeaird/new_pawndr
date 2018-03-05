@@ -7,28 +7,32 @@ module.exports = {
 	index: function(req,res){
 		res.json("I haven't done this yet.");
 	},
-	
-    register: (req, res) => {
-        var newUser = new User(req.body);
-        newUser.save(function(err){
-            if(err){
-                console.log('failed validation');
-                res.json(err);
-            }else{
-                console.log('created new user, adding to session');
-                req.session.userId = newUser._id;
-                res.json(newUser);
-            }
-        })
-    },
+
 
 	login: function(req,res){
+		res.json("I haven't done this yet.");
+	},
+
+	loginUser: function(req,res){
 		// is the user in the DB?
-		console.log('Users.login');
-		User.findOne({name: req.body.name}, function(err, foundUser){
+		console.log('Users.loginUser');
+		User.findOne({email: req.body.email}, function(err, foundUser){
 			if(err){
 				console.log('whaa');
 				res.json(err);
+			}else if(foundUser==null){
+				console.log('no user in DB, creating...');
+				var newUser = new User(req.body);
+				newUser.save(function(err){
+					if(err){
+						console.log('failed validation');
+						res.json(err);
+					}else{
+						console.log('created new user, adding to session');
+						req.session.userId = newUser._id;
+						res.json(newUser);
+					}
+				})
 			}else{
 				console.log('user IN DB, adding to session');
 				req.session.userId = foundUser._id;

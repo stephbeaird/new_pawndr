@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'dashboard', redirectTo: '/pet/list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'pet', component: PetsComponent, children: [
+  { path: 'pets', component: PetsComponent, 
+    children: [
       { path: 'list' as 'dashboard', component: PetListComponent },
       { path: 'mypet', component: UserPetsComponent }
   ] }

@@ -10,15 +10,11 @@ import { Pet } from '../pets';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User = new User();
-  loginError: String;
-  regError: String;
-  sample: Pet = new Pet();
-
-  constructor(private _dataService: DataService, private _router: Router) { }
+  user: any = {email:''};
+  constructor(private _router:Router, private _apiService:DataService) { }
 
   ngOnInit() {
-  	this._dataService.userData.subscribe((dataFromService)=>{
+  	this._apiService.userData.subscribe((dataFromService)=>{
   		console.log(dataFromService);
   		if(dataFromService != null){
   			this._router.navigate(['/dashboard']);
@@ -29,6 +25,6 @@ export class LoginComponent implements OnInit {
   	})
   }
   login(){
-  	this._dataService.loginUser(this.user);
+  	this._apiService.loginUser(this.user);
   }
 }

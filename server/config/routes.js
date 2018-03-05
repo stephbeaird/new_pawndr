@@ -1,18 +1,17 @@
-const path = require('path');
 const pets = require('../controllers/pets.js');
 const users = require('../controllers/users.js');
 var mongoose = require('mongoose');
 
 
-module.exports = (app) => {
-    app.get('data/landing', users.index)
-    app.get('data/logout', users.logout);
+module.exports = function(app){
+    app.get('/data/landing', users.index)
+    app.get('/data/logout', users.logout);
+    app.get('/data/login', users.login);
     app.get('/data/current_user', users.current);
     app.get('/petOfTheDay', pets.getRandom);
-    app.post('/register', users.register);
-    app.post('/data/login', users.login);
+    app.post('/data/login', users.loginUser);
 
-    app.get('data/pets', pets.all);
+    app.get('/pets', pets.all);
     // app.get('/mypets', pets.allUserpets);
     app.get('/data/pet/:id', pets.show);
     app.post('/pets/search', pets.filter);

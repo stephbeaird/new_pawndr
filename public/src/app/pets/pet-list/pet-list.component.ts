@@ -10,7 +10,7 @@ import { DataService } from '../../data.service';
 })
 export class PetListComponent implements OnInit {
   allPets: Array<Pet>;
-  currentUserId: string;
+  currentUser:any = {firstName:'req.params.firstName', lastName:'req.params.lastName',}
   searchStr: string = '';
 
   constructor(private _dataService: DataService) { 
