@@ -6,12 +6,14 @@ import { LandingComponent } from './landing/landing.component';
 import { PetsComponent } from './pets/pets.component';
 import { PetListComponent } from './pets/pet-list/pet-list.component';
 import { UserPetsComponent } from './pets/user-pets/user-pets.component';
+import { StoriesComponent } from './stories/stories.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'dashboard', redirectTo: '/pet/list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'stories', component: StoriesComponent},
   { path: 'pets', component: PetsComponent, 
     children: [
       { path: 'list' as 'dashboard', component: PetListComponent },

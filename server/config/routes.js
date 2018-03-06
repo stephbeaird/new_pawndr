@@ -9,6 +9,7 @@ module.exports = function(app){
     app.get('/data/login', users.login);
     app.get('/data/current_user', users.current);
     app.get('/petOfTheDay', pets.getRandom);
+    app.get('*')
     app.post('/data/login', users.loginUser);
 
     app.get('/pets', pets.all);

@@ -23,3 +23,7 @@ routes_setter(app);
 app.listen(8000, function(){
 	console.log('on port 8000');
 })
+
+app.all("*", (req,res,next) => {
+	res.sendFile(path.resolve("./public/dist/index.html"))
+  });
