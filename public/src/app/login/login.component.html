@@ -103,8 +103,9 @@
             </div>
         <fieldset>
           <form (submit)="login()"  #newUserForm="ngForm">
+            <p>Fist Name: <input type="text" name="firstName" [(ngModel)]="user.firstName"></p>
+            <p>Last Name: <input type="text" name="lastName" [(ngModel)]="user.lastName"></p>
             <p>Email: <input type="email" name="email" [(ngModel)]="user.email"></p>
-
             <input type="submit" value="login">
           </form>
         </fieldset>

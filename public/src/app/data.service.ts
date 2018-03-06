@@ -28,7 +28,7 @@ export class DataService {
 	console.log('loginUser');
 	this._http.post('/data/login', userObj)
 	.subscribe((responseData:any)=>{
-		console.log('responseData',responseData);
+		console.log('responseData', responseData);
 		this.userData.next(responseData);
 	})
 	}

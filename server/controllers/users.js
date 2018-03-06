@@ -16,16 +16,19 @@ module.exports = {
 	loginUser: function(req,res){
 		// is the user in the DB?
 		console.log('Users.loginUser');
-		User.findOne({email: req.body.email}, function(err, foundUser){
+		User.findOne({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email}, function(err, foundUser){
 			if(err){
 				console.log('whaa');
 				res.json(err);
 			}else if(foundUser==null){
+				console.log(foundUser);
 				console.log('no user in DB, creating...');
 				var newUser = new User(req.body);
+					console.log(newUser)
 				newUser.save(function(err){
 					if(err){
 						console.log('failed validation');
+						console.log(err)
 						res.json(err);
 					}else{
 						console.log('created new user, adding to session');

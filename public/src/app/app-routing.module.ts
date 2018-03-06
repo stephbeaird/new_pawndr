@@ -11,7 +11,7 @@ import { StoriesComponent } from './stories/stories.component';
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
-  { path: 'dashboard', redirectTo: '/pet/list', pathMatch: 'full' },
+  { path: 'dashboard', redirectTo: '/pets/list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'stories', component: StoriesComponent},
   { path: 'pets', component: PetsComponent, 
