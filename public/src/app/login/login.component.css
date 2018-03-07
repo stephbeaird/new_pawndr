@@ -18,3 +18,19 @@ h3{
     font-family: oswald;
     display: inline;
 }
+
+.carousel {
+    position: relative;
+    height:
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+.carousel-inner > .item > img {
+    line-height: 1;
+}
+  
