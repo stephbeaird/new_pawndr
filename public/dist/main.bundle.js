@@ -425,26 +425,16 @@ var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var data_service_1 = __webpack_require__("../../../../../src/app/data.service.ts");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(_router, _apiService) {
+    function LoginComponent(_router, _dataService) {
         this._router = _router;
-        this._apiService = _apiService;
+        this._dataService = _dataService;
         this.user = { firstName: '', lastName: '', email: '' };
     }
-    LoginComponent.prototype.ngOnInit = function () {
-        // this._apiService.userData.subscribe((dataFromService)=>{
-        // 	console.log(dataFromService);
-        // 	if(dataFromService != null){
-        // 		this._router.navigate(['/dashboard']);
-        // 	}else{
-        // 		console.log('idk what went wrong');
-        // 		console.log(dataFromService);
-        // 	}
-        // })
-    };
+    LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
         var _this = this;
-        this._apiService.loginUser(this.user);
-        this._apiService.userData.subscribe(function (dataFromService) {
+        this._dataService.loginUser(this.user);
+        this._dataService.userData.subscribe(function (dataFromService) {
             console.log(dataFromService);
             if (dataFromService != null) {
                 _this._router.navigate(['/dashboard']);
@@ -512,7 +502,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/pets/pet-list/pet-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"create\">\n        <h3>Create Listing</h3>\n          <div class=\"pet\">\n            <form (submit)=\"addPet(); petForm.reset()\" #petForm=\"ngForm\">\n              <div class=\"col-sm-7\">\n                <div class=\"form-group\">\n                  <label>Name: </label> <span class=\"error\" *ngIf=\"name.errors && (name.dirty || name.touched)\"> *required</span>\n                  <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"newPet.name\" #title=\"ngModel\" required>\n                  <label>Image URLName: </label> <span class=\"error\" *ngIf=\"image.errors && (image.dirty || image.touched)\"> *required</span>\n                  <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"newPet.image\" #title=\"ngModel\" required>\n                  <label>Description: </label> <span class=\"error\" *ngIf=\"description.errors && (description.dirty || description.touched)\">\n                    <span *ngIf=\"description.errors.required\"> *required</span><span *ngIf=\"description.errors.maxlength\"> *cannot exceed 200 characters</span></span>\n                  <textarea class=\"form-control\" rows=\"3\" name=\"desc\" [(ngModel)]=\"newPet.description\" #description=\"ngModel\" required maxlength=\"200\"></textarea>\n                </div>\n              </div>\n              <div class=\"col-sm-2\">\n                <div class=\"form-group\">\n                  <label>Adoption Fee</label> <span class=\"error\" *ngIf=\"fee.errors && (fee.dirty || fee.touched)\">\n                    <span *ngIf=\"fee.errors.required\"> *required</span><span *ngIf=\"!price.errors.required && price.errors.minValue\">*at least $1</span></span>\n                  <input type=\"number\" class=\"form-control\" name=\"price\" [(ngModel)]=\"newBike.price\" #price=\"ngModel\" required minValue=\"1\">\n                  <label>Location</label> <span class=\"error\" *ngIf=\"location.errors && (location.dirty || location.touched)\"> *required</span>\n                  <input type=\"text\" class=\"form-control\" name=\"location\" [(ngModel)]=\"newBike.location\" #location=\"ngModel\" required>\n                  <input type=\"submit\" value=\"Create\" class=\"btn btn-success\" [disabled]=\"!bikeForm.form.valid || !hasImage\">\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n        <hr>\n        <div class=\"edits\">\n        <h3>Edit/Delete Listings</h3>\n          <div class=\"bikes\" *ngFor=\"let b of myBikes; let idx = index\">\n            <form (submit)=\"updateBike(idx)\" #bikeForm=\"ngForm\">\n              <div class=\"col-sm-3\">\n                <img [src]=\"b.image\" alt=\"click to add photo (required)\" (click)=\"editPhoto(idx)\">\n              </div>\n              <div class=\"col-sm-7\">\n                <div class=\"form-group\">\n                  <label>Title</label> \n                   <span class=\"error\" *ngIf=\"title.errors && (title.dirty || title.touched)\"> *required</span> \n                  <input type=\"text\" name=\"title\" class=\"form-control\" [(ngModel)]=\"b.title\" #title=\"ngModel\" required>\n                  <label>Description</label> \n                   <span class=\"error\" *ngIf=\"description.errors && (description.dirty || description.touched)\"> \n                   <span *ngIf=\"description.errors.required\"> *required</span><span *ngIf=\"description.errors.maxlength\"> *cannot exceed 200 characters</span></span> \n                  <textarea class=\"form-control\" rows=\"3\" name=\"desc\" [(ngModel)]=\"b.description\" #description=\"ngModel\" required maxlength=\"200\"></textarea>\n                </div>\n              </div>\n              <div class=\"col-sm-2\">\n                <div class=\"form-group\">\n                  <label>Price</label>\n                    <span class=\"error\" *ngIf=\"price.errors && (price.dirty || price.touched)\"> \n                    <span *ngIf=\"price.errors.required\"> *required</span><span *ngIf=\"priceTooLow\">*at least $1</span></span> \n                  <input type=\"number\" class=\"form-control\" name=\"price\" [(ngModel)]=\"b.price\" #price=\"ngModel\" required minValue=\"1\">\n                  <label>Location</label> \n                    <span class=\"error\" *ngIf=\"location.errors && (location.dirty || location.touched)\"> *required</span> \n                  <input type=\"text\" class=\"form-control\" name=\"location\" [(ngModel)]=\"b.location\" #location=\"ngModel\" required>\n                  <input type=\"submit\" value=\"Update\" class=\"btn btn-primary btn-half\" [disabled]=\"!bikeForm.form.valid || b.image == '' || b.image == null\"> \n                  <button class=\"btn btn-danger btn-half\" (click)=\"deleteBike(idx)\">Delete</button>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>"
+module.exports = "<div class=\"create\">\n        <h3>Create Listing</h3>\n          <div class=\"pet\">\n            <form (submit)=\"addPet(); petForm.reset()\" #petForm=\"ngForm\">\n              <div class=\"col-sm-7\">\n                <div class=\"form-group\">\n                  <label>Name: </label> <span class=\"error\" *ngIf=\"name.errors && (name.dirty || name.touched)\"> *required</span>\n                  <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"newPet.name\" #title=\"ngModel\" required>\n                  <label>Image URL: </label> <span class=\"error\" *ngIf=\"image.errors && (image.dirty || image.touched)\"> *required</span>\n                  <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"newPet.image\" #title=\"ngModel\" required>\n                  <label>Description: </label> <span class=\"error\" *ngIf=\"description.errors && (description.dirty || description.touched)\">\n                    <span *ngIf=\"description.errors.required\"> *required</span><span *ngIf=\"description.errors.maxlength\"> *cannot exceed 500 characters</span></span>\n                  <textarea class=\"form-control\" rows=\"3\" name=\"desc\" [(ngModel)]=\"newPet.description\" #description=\"ngModel\" required maxlength=\"500\"></textarea>\n                </div>\n              </div>\n              <div class=\"col-sm-2\">\n                <div class=\"form-group\">\n                  <label>Adoption Fee: </label> <span class=\"error\" *ngIf=\"fee.errors && (fee.dirty || fee.touched)\">\n                    <span *ngIf=\"fee.errors.required\"> *required</span><span *ngIf=\"!fee.errors.required && fee.errors.minValue\">*at least $1</span></span>\n                  <input type=\"number\" class=\"form-control\" name=\"fee\" [(ngModel)]=\"newPet.fee\" #fee=\"ngModel\" required minValue=\"1\">\n                  <label>Location</label> <span class=\"error\" *ngIf=\"location.errors && (location.dirty || location.touched)\"> *required</span>\n                  <input type=\"text\" class=\"form-control\" name=\"location\" [(ngModel)]=\"newPet.location\" #location=\"ngModel\" required>\n                  <input type=\"submit\" value=\"Create\" class=\"btn btn-success\" [disabled]=\"!petForm.form.valid || !hasImage\">\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>\n        <hr>\n        <div class=\"edits\">\n        <h3>Edit/Delete Listings</h3>\n          <div class=\"pets\" *ngFor=\"let p of myPets; let idx = index\">\n            <form (submit)=\"updatePet(idx)\" #petForm=\"ngForm\">\n              <div class=\"col-sm-7\">\n                <div class=\"form-group\">\n                  <label>Title</label> \n                   <span class=\"error\" *ngIf=\"title.errors && (title.dirty || title.touched)\"> *required</span> \n                  <input type=\"text\" name=\"title\" class=\"form-control\" [(ngModel)]=\"p.title\" #title=\"ngModel\" required>\n                  <label>Description</label> \n                   <span class=\"error\" *ngIf=\"description.errors && (description.dirty || description.touched)\"> \n                   <span *ngIf=\"description.errors.required\"> *required</span><span *ngIf=\"description.errors.maxlength\"> *cannot exceed 500 characters</span></span> \n                  <textarea class=\"form-control\" rows=\"3\" name=\"desc\" [(ngModel)]=\"p.description\" #description=\"ngModel\" required maxlength=\"500\"></textarea>\n                </div>\n              </div>\n              <div class=\"col-sm-2\">\n                <div class=\"form-group\">\n                  <label>Fee</label>\n                    <span class=\"error\" *ngIf=\"fee.errors && (fee.dirty || fee.touched)\"> \n                    <span *ngIf=\"fee.errors.required\"> *required</span><span *ngIf=\"feeTooLow\">*at least $1</span></span> \n                  <input type=\"number\" class=\"form-control\" name=\"fee\" [(ngModel)]=\"p.fee\" #fee=\"ngModel\" required minValue=\"1\">\n                  <label>Location</label> \n                    <span class=\"error\" *ngIf=\"location.errors && (location.dirty || location.touched)\"> *required</span> \n                  <input type=\"text\" class=\"form-control\" name=\"location\" [(ngModel)]=\"b.location\" #location=\"ngModel\" required>\n                  <input type=\"submit\" value=\"Update\" class=\"btn btn-primary btn-half\" [disabled]=\"!petForm.form.valid || p.image == '' || p.image == null\"> \n                  <button class=\"btn btn-danger btn-half\" (click)=\"deletePet(idx)\">Delete</button>\n                </div>\n              </div>\n            </form>\n          </div>\n        </div>"
 
 /***/ }),
 
@@ -541,7 +531,6 @@ var PetListComponent = /** @class */ (function () {
         this._router = _router;
         this.newPet = new pets_1.Pet();
         this.currentUser = { firstName: 'req.params.firstName', lastName: 'req.params.lastName', id: 'req.params._id' };
-        this.hasImage = false;
         this.searchStr = '';
     }
     PetListComponent.prototype.ngOnInit = function () {
@@ -557,12 +546,6 @@ var PetListComponent = /** @class */ (function () {
     };
     PetListComponent.prototype.getPets = function () {
         this._dataService.getAllUsersPets();
-    };
-    PetListComponent.prototype.linkPhoto = function () {
-        this.newPet.image = prompt("Please enter the url for your photo:");
-        if (this.newPet.image != "") {
-            this.hasImage = true;
-        }
     };
     PetListComponent.prototype.addPet = function () {
         var _this = this;

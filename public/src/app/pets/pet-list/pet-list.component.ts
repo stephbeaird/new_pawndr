@@ -14,7 +14,6 @@ export class PetListComponent implements OnInit {
   newPet: Pet = new Pet();
   allPets: Array<Pet>;
   currentUser:any = {firstName:'req.params.firstName', lastName:'req.params.lastName', id:'req.params._id'}
-  hasImage: boolean = false;
   myPet: Array<Pet>;  
   searchStr: string = '';
 
@@ -36,12 +35,6 @@ export class PetListComponent implements OnInit {
   this._dataService.getAllUsersPets()
   }
   
-  linkPhoto() {
-    this.newPet.image = prompt("Please enter the url for your photo:");
-    if (this.newPet.image != "") {
-      this.hasImage = true;
-    }
-  }
   addPet() {
     this._dataService.postPet(this.currentUser._id, this.newPet, ()=>{
       console.log(this);

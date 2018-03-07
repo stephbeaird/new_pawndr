@@ -11,22 +11,13 @@ import { Pet } from '../pets';
 })
 export class LoginComponent implements OnInit {
   user: any = {firstName: '', lastName: '', email:''};
-  constructor(private _router:Router, private _apiService:DataService) { }
+  constructor(private _router:Router, private _dataService:DataService) { }
 
-  ngOnInit() {
-  	// this._apiService.userData.subscribe((dataFromService)=>{
-  	// 	console.log(dataFromService);
-  	// 	if(dataFromService != null){
-  	// 		this._router.navigate(['/dashboard']);
-  	// 	}else{
-  	// 		console.log('idk what went wrong');
-  	// 		console.log(dataFromService);
-  	// 	}
-  	// })
-  }
+  ngOnInit() {}
+
   login(){
-		this._apiService.loginUser(this.user);
-		this._apiService.userData.subscribe((dataFromService)=>{
+		this._dataService.loginUser(this.user);
+		this._dataService.userData.subscribe((dataFromService)=>{
   		console.log(dataFromService);
   		if(dataFromService != null){
   			this._router.navigate(['/dashboard']);

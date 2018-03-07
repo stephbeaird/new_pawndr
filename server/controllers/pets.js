@@ -5,7 +5,7 @@ const User = mongoose.model('User');
 module.exports = {
 
     add: function(req, res){
-		console.log('Users.createPoll')
+		console.log('Users.createPet')
 		var newPet = new Pet(req.body);
 		newPet.save(function(err){
 			if(err){
@@ -13,13 +13,13 @@ module.exports = {
 				res.json(err);
 			}else{
 				console.log('new pet created')
-				res.json(newPoll);	
+				res.json(newPet);	
 			}
 		})
     },
     
     allUserPets: (req, res, next) => {
-        console.log('Users.indexPolls');
+        console.log('Users.allUserPets');
 		Pet.find().populate('_user').exec(function(err, foundPets){
 			if(err){
 				console.log('whoops');
@@ -44,7 +44,7 @@ module.exports = {
     },
 
     destroy: (req, res) => {
-		Pet.remove(req.body, function(err, poll){
+		Pet.remove(req.body, function(err, pet){
 		})
     },
 
