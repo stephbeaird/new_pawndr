@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PetsComponent } from './pets/pets.component';
 import { PetListComponent } from './pets/pet-list/pet-list.component';
-import { UserPetsComponent } from './pets/user-pets/user-pets.component';
+import { UserPetsComponent } from './user-pets/user-pets.component';
 import { LandingComponent } from './landing/landing.component';
 import { StoriesComponent } from './stories/stories.component';
 
